@@ -6,7 +6,7 @@ class BookFlight extends React.Component {
     render(){
 
         return (
-            <form>
+            <form onSubmit="" >
                 <h2>Book Flight</h2>
                 <br />
                 <input type="text" />

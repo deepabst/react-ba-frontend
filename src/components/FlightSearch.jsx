@@ -6,13 +6,16 @@ class FlightSearch extends React.Component {
     render(){
 
         return (
-            <form>
+
+            <form onSubmit="">
                 <h2>Search Flights</h2>
-                <br />
+        
                 <input type="text" />
-                <br />
+                <br /><br />
                 <button>Search Flights</button>
+                <hr />
             </form>
+
         );
 
     }
