@@ -33,7 +33,6 @@ class Airplane extends React.Component {
                 
                 </nav>
 
-              <FlightSearch /> 
               <br />
 
                 <Route exact path="/airplanes"    component={ Airplane } />
