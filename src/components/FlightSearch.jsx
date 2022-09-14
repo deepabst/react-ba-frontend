@@ -37,9 +37,9 @@ class FlightSearch extends React.Component {
 
     } // handleSubmit
 
-    fetchFlights = async () => {
+    fetchFlights = async (origin, destination) => {
         try {
-            const res = await axios.get(RAILS_BA_BASE_URL);
+            const res = await axios.get(RAILS_BA_BASE_URL+'/'+origin+'/'+destination);
             console.log('response', res.data);
 
             this.setState({

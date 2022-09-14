@@ -3,8 +3,8 @@ import React from "react";
 class FlightSearchForm extends React.Component {
 
     state = {
-        origin: 'LAX',
-        destination: 'HND'
+        origin: 'SYD',
+        destination: 'SUV'
     }
 
     // TODO: combine these methods.. 
@@ -21,12 +21,11 @@ class FlightSearchForm extends React.Component {
         console.log("form submitted");
         ev.preventDefault();
 
-        // we want to make a request to the Rails BE
-        // do a search for flights from <Origin> to <Destination>
-        // come back and print the results
+        // we want to navigate to /flights/:origin/:destination
+        // print the search results from the BE
 
         // do somethign with the props from FlightSearch
-        this.props.notifyParent(this.state.secretText);
+        this.props.notifyParent(this.state.origin, this.state.destination);
 
     } // handleSubmit
 

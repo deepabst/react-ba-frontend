@@ -5,6 +5,7 @@ import '../App.css';
 import FlightSearch from "./FlightSearch";
 import BookFlight from "./BookFlight";
 import SelectSeat from "./SelectSeat";
+import FlightResults from "./FlightResults";
 
 import { Route, HashRouter as Router, Link } from "react-router-dom";
 
@@ -35,10 +36,12 @@ class Airplane extends React.Component {
 
               <br />
 
-                <Route exact path="/airplanes"    component={ Airplane } />
+                {/* <Route exact path="/airplanes"    component={ Airplane } /> */}
                 <Route exact path="/flights"      component={ BookFlight } />
                 <Route exact path="/search"       component={ FlightSearch } />
-                <Route exact path="/flight/:id"   component={ SelectSeat } /> 
+                <Route exact path="/flight/:id"   component={ SelectSeat } />
+                <Route exact path="/flights/:origin/:destination"   component={ FlightResults } />
+
 
             </Router>
             </div>
