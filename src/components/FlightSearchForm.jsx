@@ -17,15 +17,10 @@ class FlightSearchForm extends React.Component {
     handleInputDestination = (ev) => {
         this.setState({ destination: ev.target.value });
     }
-    handleSubmit = (ev) => {
-        console.log("form submitted");
-        ev.preventDefault();
-
-        // we want to navigate to /flights/:origin/:destination
-        // print the search results from the BE
-
-        // do somethign with the props from FlightSearch
-        this.props.notifyParent(this.state.origin, this.state.destination);
+    handleSubmit = () => {
+        console.log(`form submitted: new route should be:${this.props.match.url}}`);
+        // navigate to /flights/:origin/:destination
+        this.props.history.push(`/flights/${this.state.origin}/${this.state.destination}`)
 
     } // handleSubmit
 

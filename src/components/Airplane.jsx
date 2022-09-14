@@ -1,4 +1,3 @@
-
 import React from "react";
 import '../App.css';
 
@@ -18,14 +17,14 @@ class Airplane extends React.Component {
             <div className="App" >
             <Router>
 
-                <h1>Create Plane</h1>
+                <h1>Burning Airlines</h1>
                 <hr />
                 <nav>
-                    <Link to='/airplanes'>Home</Link>
+                    <Link to='/'>Home</Link>
+                    {' '}|{' '}
+                    <Link to='/search'>Search Flights</Link>
                     {' '}|{' '}
                     <Link to='/flights'>Book Flight</Link>
-                    {' '}|{' '}
-                    <Link to='/search'>Search Results</Link>
                     {' '}|{' '}
                     <Link to='/flight/:id'>Seat Selection</Link>
                     
