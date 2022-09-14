@@ -1,77 +1,80 @@
 
 import React from "react";
+import axios from "axios";
+import FlightSearchForm from "./FlightSearchForm";
+
+const RAILS_BA_BASE_URL = 'http://localhost:3000/flights'; // flights BE
+
+
+function FlightItem(props) {
+    console.log(`props:`,props.flight);
+    return (
+        <li>
+            <strong>
+                {props.flight.id}
+                <br />
+                {props.flight.flight}
+                <br />
+                {props.flight.origin}
+                <br />
+                {props.flight.destination}
+            </strong>
+        </li>
+    );
+} // FlightItem()
 
 class FlightSearch extends React.Component {
 
     state = {
-        from: 'LAX',
-        to: 'HND'
-    }
-
-
-    // TODO: combine these methods.. 
-    // Is it possible to have an onChange method
-    // that hardcodes the where to get the updated state?
-    // i.e. onChange - always update the from/to state from the from/to inputs respectively
-    handleInputFrom = (ev) => {
-        this.setState({ from: ev.target.value });
-    }
-    handleInputTo = (ev) => {
-        this.setState({ from: ev.target.value });
+        flights: [],    // stores API results
+        loading: true, // check if we are ready to show results
+        error: null    // any errors?
     }
 
     handleSubmit = (ev) => {
         console.log("form submitted");
         ev.preventDefault();
+
     } // handleSubmit
+
+    fetchFlights = async () => {
+        try {
+            const res = await axios.get(RAILS_BA_BASE_URL);
+            console.log('response', res.data);
+
+            this.setState({
+                flights: res.data, //.reverse() array of flights
+                loading: false
+            });
+        } catch (error) {
+            console.error('Error loading flights from API', error);
+
+            this.setState({
+                loading: false,
+                error: error // store the error
+            })
+        } // catch
+
+    } // fetchFlights()
 
     render() {
 
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <h2>Search Flights</h2>
+            <div className="App">
+            <h3>Flight Search</h3>
+            <FlightSearchForm notifyParent={this.fetchFlights} />
+            <h3>Flights to the world</h3>
 
-                    <input type="text" name="Origin" placeholder="from" onChange={this.handleInputFrom} />
-                    {/* 
-                        TODO: create a list of origin airport codes for a dropdown
-                    */}
-                    <br />
-                    <input type="text" name="Destination" placeholder="to" />
-                    <br />
-                    <button>Search Flights</button>
-                    <hr />
-                </form>
-                <hr />
-                <h3>Flight Search Results</h3>
-                { /* Dummy Data */ }
-                <table>
-                    <tr>
-                    <th>Date</th>
-                    <th>Flight</th>
-                    <th>From &gt; To</th>
-                    <th>Plane</th>
-                    </tr>
-                    <tr>
-                        <td>20/10/22</td>
-                        <td>23</td>
-                        <td>LAX &gt; HND</td>
-                        <td>A380</td>
-                    </tr>
-                    <tr>
-                        <td>22/10/22</td>
-                        <td>23</td>
-                        <td>LAX &gt; HND</td>
-                        <td>A380</td>
-                    </tr>
-                    <tr>
-                        <td>25/10/22</td>
-                        <td>23</td>
-                        <td>LAX &gt; HND</td>
-                        <td>A380</td>
-                    </tr>
-                </table>
-            </div>
+            {
+                this.state.loading
+                    ?
+                    <p>Loading Flights....</p>
+                    :
+                    <ul>
+                        {this.state.flights.map(f => <FlightItem key={f.id} flight={f} />)}
+                    </ul>
+            }
+        </div>
 
         ); // return
 
