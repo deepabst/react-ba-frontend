@@ -1,19 +1,8 @@
 import React from "react";
 import axios from "axios";
+import FlightShow from "./FlightShow";
 
 const RAILS_BA_BASE_URL = 'http://localhost:3000/'; // flights BE
-
-// function component for displaying each flight search result
-function FlightItem(props) {
-    return (
-        <li>
-                {props.flight.id}&nbsp;
-                <strong>{props.flight.flight}</strong>&nbsp;
-                {props.flight.origin}&nbsp;
-                {props.flight.destination}&nbsp;
-        </li>
-    ); // return
-} // FlightItem()
 
 class FlightResults extends React.Component {
 
@@ -56,7 +45,7 @@ class FlightResults extends React.Component {
                     <p>Loading Flights....</p>
                     :
                     <ul>
-                            {this.state.flights.map(f => <FlightItem key={f.id} flight={f} />)}
+                            {this.state.flights.map(f => <FlightShow key={f.id} flight={f} />)}
                     </ul>
                 }
             </div>
