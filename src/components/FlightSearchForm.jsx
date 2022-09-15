@@ -18,7 +18,7 @@ class FlightSearchForm extends React.Component {
         this.setState({ destination: ev.target.value });
     }
     handleSubmit = () => {
-        console.log(`form submitted: new route should be:${this.props.match.url}}`);
+        // console.log(`form submitted: new route should be:${this.props.match.url}}`);
         // navigate to /flights/:origin/:destination
         this.props.history.push(`/flights/${this.state.origin}/${this.state.destination}`)
 

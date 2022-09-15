@@ -38,7 +38,7 @@ class Airplane extends React.Component {
                 {/* <Route exact path="/airplanes"    component={ Airplane } /> */}
                 <Route exact path="/flights"      component={ BookFlight } />
                 <Route exact path="/search"       component={ FlightSearch } />
-                <Route exact path="/flight/:id"   component={ SelectSeat } />
+                <Route exact path="/flights/:id"   component={ SelectSeat } />
                 <Route exact path="/flights/:origin/:destination"   component={ FlightResults } />
 
 
